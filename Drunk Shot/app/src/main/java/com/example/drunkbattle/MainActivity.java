@@ -6,17 +6,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
     private static final String DEBUG_TAG = "Velocity";
     private VelocityTracker mVelocityTracker = null;
+    ImageView circle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        int in = 2;
+        circle = findViewById(R.id.circleImage);
 
     }
 
@@ -45,16 +46,19 @@ public class MainActivity extends AppCompatActivity {
                 // When you want to determine the velocity, call
                 // computeCurrentVelocity(). Then call getXVelocity()
                 // and getYVelocity() to retrieve the velocity for each pointer ID.
-                mVelocityTracker.computeCurrentVelocity(1000);
+                mVelocityTracker.computeCurrentVelocity(100);
                 // Log velocity of pixels per second
                 // Best practice to use VelocityTrackerCompat where possible.
+
+
+
                 Log.d("", "X velocity: " + mVelocityTracker.getXVelocity(pointerId));
                 Log.d("", "Y velocity: " + mVelocityTracker.getYVelocity(pointerId));
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 // Return a VelocityTracker object back to be re-used by others.
-                mVelocityTracker.recycle();
+//                mVelocityTracker.recycle();
                 break;
         }
         return true;
