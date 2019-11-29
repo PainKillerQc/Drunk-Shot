@@ -14,11 +14,12 @@
         tools:layout_editor_absoluteY="353dp">
 
         <ImageView
+            android:id="@+id/circleImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/circle"
-            android:translationX="100dp"
-            android:translationY="100dp"></ImageView>
+            android:src="@drawable/circle">
+
+        </ImageView>
 
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
