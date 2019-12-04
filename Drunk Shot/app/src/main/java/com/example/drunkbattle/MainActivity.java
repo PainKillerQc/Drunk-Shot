@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         circle = findViewById(R.id.circleImage);
+
+        FrameLayout frameLayout = new FrameLayout(MainActivity.this);
+        frameLayout = findViewById(R.id.mainFrameLayout);
+        //frameLayout.setb
 
     }
 
