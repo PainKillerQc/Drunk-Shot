@@ -7,19 +7,23 @@
     tools:context=".MainActivity">
 
 
-    <FrameLayout
+    <RelativeLayout
+        android:id="@+id/reLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="353dp">
+        android:background="@drawable/road">
 
         <ImageView
             android:id="@+id/circleImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/circle">
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="false"
+            android:layout_centerHorizontal="false"
+            android:clickable="false"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/car"
+            android:translationX="150dp"
+            android:translationY="600dp" />
+    </RelativeLayout>
 
-        </ImageView>
-
-    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
