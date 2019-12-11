@@ -18,12 +18,21 @@ import android.widget.ImageView;
 public class MainActivity extends Activity {
     
 
+    ImageView circle;
+    private ViewGroup mainLayout;
+
+    private int dx;
+    private int dy;
+
+
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        circle.setClickable(false);
 
 
         DisplayMetrics dm = new DisplayMetrics();
