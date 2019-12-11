@@ -2,21 +2,17 @@ package com.example.drunkbattle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
-import android.os.Build;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.LogPrinter;
-import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
-import android.view.VelocityTracker;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
+import android.util.DisplayMetrics;
+import android.view.Surface;
+import android.view.SurfaceHolder;
+import android.view.Window;
+import android.view.WindowManager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     ImageView circle;
     private ViewGroup mainLayout;
@@ -29,54 +25,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mainLayout = (RelativeLayout) findViewById(R.id.reLayout);
-        circle = findViewById(R.id.circleImage);
-
-        circle.setClickable(false);
-
-        circle.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-
-                final int x = (int)motionEvent.getRawX();
-                final int y = (int)motionEvent.getRawY();
-
-                switch(motionEvent.getAction()) {
-
-                    case MotionEvent.ACTION_DOWN: {
-                        RelativeLayout.LayoutParams lParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
-
-                        dx = x - lParams.leftMargin;
-                        dy = y - lParams.topMargin;
-
-                    }
-                    break;
-
-                    case MotionEvent.ACTION_MOVE: {
-                        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
-
-                        layoutParams.leftMargin = x - dx;
-                        layoutParams.topMargin = y - dy;
-                        layoutParams.rightMargin = 0;
-                        layoutParams.bottomMargin = 0;
-                        view.setLayoutParams(layoutParams);
-
-                    }
-                    break;
-                    case MotionEvent.ACTION_UP: {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 
-                    }
-                    break;
 
-                }
-                mainLayout.invalidate();
-                return true;
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        Constants.SCREEN_WIDTH = dm.widthPixels;
+        Constants.SCREEN_HEIGHT = dm.heightPixels;
 
-            }
-        });
-
+        setContentView(new GamePanel(this));
     }
 }
