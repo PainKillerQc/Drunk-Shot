@@ -2,6 +2,8 @@ package com.example.drunkbattle;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
