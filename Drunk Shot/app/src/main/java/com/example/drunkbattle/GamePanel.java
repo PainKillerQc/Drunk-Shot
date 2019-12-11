@@ -87,6 +87,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
                 if(gameOver && System.currentTimeMillis() - gameOverTime >= 2000)
                 {
                     reset();
+                    
                     gameOver = false;
                 }
             case MotionEvent.ACTION_MOVE:
