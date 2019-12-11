@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Surface;
@@ -26,6 +27,11 @@ public class MainActivity extends Activity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         Constants.SCREEN_WIDTH = dm.widthPixels;
         Constants.SCREEN_HEIGHT = dm.heightPixels;
+        MediaPlayer music = MediaPlayer.create(MainActivity.this,R.raw.car_chase);
+        music.setLooping(true);
+        music.start();
+        MediaPlayer sound = MediaPlayer.create(MainActivity.this;
+
 
         setContentView(new GamePanel(this));
     }
