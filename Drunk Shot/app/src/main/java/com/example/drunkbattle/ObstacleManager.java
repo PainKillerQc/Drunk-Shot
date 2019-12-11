@@ -19,7 +19,11 @@ public class ObstacleManager {
     {
         for(Obstacle ob:obstacles)
         {
-            return true;
+            if(ob.playerCollide(player))
+            {
+                return true;
+            }
+
         }
 
         return false;

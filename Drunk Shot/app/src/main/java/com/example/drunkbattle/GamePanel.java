@@ -32,7 +32,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         thread = new MainThread(getHolder(),this);
 
         player = new RectPlayer(new Rect(100,100,200,200), Color.rgb(255,0,0));
-
         playerPoint = new Point(Constants.SCREEN_WIDTH/2, 3*Constants.SCREEN_HEIGHT/4);
         player.update();
 
@@ -85,14 +84,15 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             case MotionEvent.ACTION_DOWN:
                 if(!gameOver && player.getRectangle().contains((int)event.getX(),(int) event.getY()))
                     movingPlayer = true;
-                if(!gameOver && System.currentTimeMillis() - gameOverTime >= 2000)
+                if(gameOver && System.currentTimeMillis() - gameOverTime >= 2000)
                 {
                     reset();
                     gameOver = false;
                 }
             case MotionEvent.ACTION_MOVE:
-                if(!gameOver && movingPlayer)
-                playerPoint.set((int)event.getX(),(int)event.getY());
+                if(!gameOver && movingPlayer) {
+                    playerPoint.set((int) event.getX(), (int) event.getY());
+                }
                 break;
             case MotionEvent.ACTION_UP:
                 movingPlayer = false;
@@ -137,7 +137,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     }
     private void drawCenterText(Canvas canvas, Paint paint, String text) {
         paint.setTextAlign(Paint.Align.LEFT);
-        paint.setColor(Color.rgb(255, 255, 255));
         canvas.getClipBounds(r);
         int cHeight = r.height();
         int cWidth = r.width();
