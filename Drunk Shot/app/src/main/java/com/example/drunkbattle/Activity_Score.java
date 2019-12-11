@@ -9,6 +9,6 @@ public class Activity_Score extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity__score);
+        setContentView(R.layout.activity_score1);
     }
 }
