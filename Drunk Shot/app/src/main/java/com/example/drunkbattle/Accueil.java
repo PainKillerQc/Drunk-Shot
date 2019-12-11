@@ -1,5 +1,6 @@
 package com.example.drunkbattle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -25,4 +26,6 @@ public class Accueil extends AppCompatActivity {
             }
         });
     }
+
+
 }
