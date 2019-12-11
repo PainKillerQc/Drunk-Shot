@@ -2,60 +2,81 @@ package com.example.drunkbattle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.LogPrinter;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.VelocityTracker;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String DEBUG_TAG = "Velocity";
-    private VelocityTracker mVelocityTracker = null;
 
+    ImageView circle;
+    private ViewGroup mainLayout;
+
+    private int dx;
+    private int dy;
+
+
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainLayout = (RelativeLayout) findViewById(R.id.reLayout);
+        circle = findViewById(R.id.circleImage);
+
+        circle.setClickable(false);
+
+        circle.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                final int x = (int)motionEvent.getRawX();
+                final int y = (int)motionEvent.getRawY();
+
+                switch(motionEvent.getAction()) {
+
+                    case MotionEvent.ACTION_DOWN: {
+                        RelativeLayout.LayoutParams lParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
+
+                        dx = x - lParams.leftMargin;
+                        dy = y - lParams.topMargin;
+
+                    }
+                    break;
+
+                    case MotionEvent.ACTION_MOVE: {
+                        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
+
+                        layoutParams.leftMargin = x - dx;
+                        layoutParams.topMargin = y - dy;
+                        layoutParams.rightMargin = 0;
+                        layoutParams.bottomMargin = 0;
+                        view.setLayoutParams(layoutParams);
+
+                    }
+                    break;
+                    case MotionEvent.ACTION_UP: {
 
 
-    }
+                    }
+                    break;
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        int index = event.getActionIndex();
-        int action = event.getActionMasked();
-        int pointerId = event.getPointerId(index);
-
-        switch(action) {
-            case MotionEvent.ACTION_DOWN:
-                if(mVelocityTracker == null) {
-                    // Retrieve a new VelocityTracker object to watch the
-                    // velocity of a motion.
-                    mVelocityTracker = VelocityTracker.obtain();
                 }
-                else {
-                    // Reset the velocity tracker back to its initial state.
-                    mVelocityTracker.clear();
-                }
-                // Add a user's movement to the tracker.
-                mVelocityTracker.addMovement(event);
-                break;
-            case MotionEvent.ACTION_MOVE:
-                mVelocityTracker.addMovement(event);
-                // When you want to determine the velocity, call
-                // computeCurrentVelocity(). Then call getXVelocity()
-                // and getYVelocity() to retrieve the velocity for each pointer ID.
-                mVelocityTracker.computeCurrentVelocity(1000);
-                // Log velocity of pixels per second
-                // Best practice to use VelocityTrackerCompat where possible.
-                Log.d("", "X velocity: " + mVelocityTracker.getXVelocity(pointerId));
-                Log.d("", "Y velocity: " + mVelocityTracker.getYVelocity(pointerId));
-                break;
-            case MotionEvent.ACTION_UP:
-            case MotionEvent.ACTION_CANCEL:
-                // Return a VelocityTracker object back to be re-used by others.
-                mVelocityTracker.recycle();
-                break;
-        }
-        return true;
+                mainLayout.invalidate();
+                return true;
+
+            }
+        });
+
     }
 }
