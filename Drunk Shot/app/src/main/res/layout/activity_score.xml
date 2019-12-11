@@ -64,7 +64,7 @@
             android:id="@+id/imageVoiture"
             android:layout_width="206dp"
             android:layout_height="166dp"
-            app:srcCompat="@drawable/imagesYSLF2O1Y" />
+            app:srcCompat="@drawable/car_score" />
 
         <LinearLayout
             android:layout_width="213dp"

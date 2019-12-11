@@ -21,21 +21,10 @@ public class Accueil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent  = new Intent(Accueil.this, MainActivity.class);
-                startActivityForResult(intent, 1);
+                startActivity(intent);
             }
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == 1){
-            if(resultCode == RESULT_OK){
-                Intent intent = new Intent(Accueil.this, MainActivity.class);
-
-                startActivityForResult(intent, 2);
-            }
-        }
-    }
 }
