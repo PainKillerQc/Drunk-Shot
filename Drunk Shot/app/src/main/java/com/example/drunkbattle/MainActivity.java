@@ -33,8 +33,8 @@ public class MainActivity extends Activity {
 
         setContentView(new GamePanel(this));
 
-//        Intent intent = new Intent(MainActivity.this, Activity_Score.class);
-//
-//        startActivity(intent);
+
+
+
     }
 }

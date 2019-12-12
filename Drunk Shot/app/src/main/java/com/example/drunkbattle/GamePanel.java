@@ -1,6 +1,8 @@
 package com.example.drunkbattle;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -86,9 +88,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
                     movingPlayer = true;
                 if(gameOver && System.currentTimeMillis() - gameOverTime >= 2000)
                 {
-                    reset();
-                    
-                    gameOver = false;
+                    Intent intent = new Intent(getContext(), Activity_Score.class);
+
+                    getContext().startActivity(intent);
+//                    gameOver = false;
                 }
             case MotionEvent.ACTION_MOVE:
                 if(!gameOver && movingPlayer) {
