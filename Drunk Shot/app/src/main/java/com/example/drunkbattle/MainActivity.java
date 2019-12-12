@@ -15,6 +15,8 @@ import android.view.WindowManager;
 
 public class MainActivity extends Activity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +32,12 @@ public class MainActivity extends Activity {
         MediaPlayer music = MediaPlayer.create(MainActivity.this,R.raw.car_chase);
         music.setLooping(true);
         music.start();
-        MediaPlayer sound = MediaPlayer.create(MainActivity.this;
 
 
-        setContentView(new GamePanel(this));
+
+        setContentView(R.layout.activity_main);
+
+
+
     }
 }

@@ -6,10 +6,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-
+import android.view.ViewGroup;
 
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
@@ -27,6 +28,38 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public GamePanel(Context context) {
         super(context);
 
+        getHolder().addCallback(this);
+
+        thread = new MainThread(getHolder(),this);
+
+        player = new RectPlayer(new Rect(100,100,200,200), Color.rgb(255,0,0));
+        playerPoint = new Point(Constants.SCREEN_WIDTH/2, 3*Constants.SCREEN_HEIGHT/4);
+        player.update();
+
+        obstacleManager = new ObstacleManager(200,350,75,Color.BLACK);
+
+        setFocusable(true);
+    }
+
+    public GamePanel(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        // TODO Auto-generated constructor stub
+        getHolder().addCallback(this);
+
+        thread = new MainThread(getHolder(),this);
+
+        player = new RectPlayer(new Rect(100,100,200,200), Color.rgb(255,0,0));
+        playerPoint = new Point(Constants.SCREEN_WIDTH/2, 3*Constants.SCREEN_HEIGHT/4);
+        player.update();
+
+        obstacleManager = new ObstacleManager(200,350,75,Color.BLACK);
+
+        setFocusable(true);
+    }
+
+    public GamePanel(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        // TODO Auto-generated constructor stub
         getHolder().addCallback(this);
 
         thread = new MainThread(getHolder(),this);
@@ -87,6 +120,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
                 if(gameOver && System.currentTimeMillis() - gameOverTime >= 2000)
                 {
                     reset();
+
                     gameOver = false;
                 }
             case MotionEvent.ACTION_MOVE:
