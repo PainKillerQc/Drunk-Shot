@@ -1,8 +1,6 @@
 package com.example.drunkbattle;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -65,17 +63,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        boolean retry = true;
-        while(true){
             try
             {
                 thread.setRunning(false);
                 thread.join();
-            }catch (Exception e){
+            }catch (Exception e) {
                 e.printStackTrace();
             }
-            retry = false;
-        }
     }
 
     @Override
@@ -88,10 +82,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
                     movingPlayer = true;
                 if(gameOver && System.currentTimeMillis() - gameOverTime >= 2000)
                 {
-                    Intent intent = new Intent(getContext(), Activity_Score.class);
 
-                    getContext().startActivity(intent);
-//                    gameOver = false;
                 }
             case MotionEvent.ACTION_MOVE:
                 if(!gameOver && movingPlayer) {
@@ -136,17 +127,17 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             Paint paint = new Paint();
             paint.setTextSize(100);
             paint.setColor(Color.MAGENTA);
-            drawCenterText(canvas,paint,"Game Over");
+            drawCenterText(canvas,paint);
         }
     }
-    private void drawCenterText(Canvas canvas, Paint paint, String text) {
+    private void drawCenterText(Canvas canvas, Paint paint) {
         paint.setTextAlign(Paint.Align.LEFT);
         canvas.getClipBounds(r);
         int cHeight = r.height();
         int cWidth = r.width();
-        paint.getTextBounds(text, 0, text.length(), r);
+        paint.getTextBounds("Game Over", 0, "Game Over".length(), r);
         float x = cWidth / 2f - r.width() / 2f - r.left;
         float y = cHeight / 2f + r.height() / 2f - r.bottom;
-        canvas.drawText(text, x, y, paint);
+        canvas.drawText("Game Over", x, y, paint);
     }
 }
