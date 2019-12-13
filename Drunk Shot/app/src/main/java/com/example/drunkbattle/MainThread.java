@@ -51,15 +51,25 @@ public class MainThread extends Thread {
 
             try
             {
-                canvas = this.surfaceHolder.lockCanvas();
+//                canvas = this.surfaceHolder.lockCanvas();
 
                 synchronized (surfaceHolder)
                 {
+                    canvas = this.surfaceHolder.lockCanvas();
                     this.gamePanel.update();
                     this.gamePanel.draw(canvas);
                     // reset the canvas to blank at the start
                     canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
                     this.gamePanel.draw(canvas);
+
+                    if(canvas != null)
+                    {
+//                        System.out.println(" player canvas set");
+//                        Canvas canvasIinitialise = new Canvas();
+//                        canvasIinitialise = canvas;
+//                        this.gamePanel.drawPlayer(canvasIinitialise);
+                        this.gamePanel.drawPlayer(canvas);
+                    }
                 }
 
             }

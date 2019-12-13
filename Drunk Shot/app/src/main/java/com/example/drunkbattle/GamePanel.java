@@ -32,6 +32,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private boolean movingPlayer = false;
     private boolean gameOver = false;
 
+    //private SceneManager manager;
+
     private long gameOverTime;
 
     public GamePanel(Context context) {
@@ -43,11 +45,12 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
         getHolder().addCallback(this);
 
-
+        Constants.CURRENT_CONTEXT = context;
 
         thread = new MainThread(getHolder(),this);
 
-        player = new RectPlayer(new Rect(100,100,200,200), Color.rgb(255,0,0));
+
+        player = new RectPlayer(new Rect(100, 100, 200, 200), Color.rgb(255, 0, 0));
         playerPoint = new Point(Constants.SCREEN_WIDTH/2, 3*Constants.SCREEN_HEIGHT/4);
         player.update();
 
@@ -69,7 +72,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
         thread = new MainThread(getHolder(),this);
 
-        player = new RectPlayer(new Rect(100,100,200,200), Color.rgb(255,0,0));
+        Constants.CURRENT_CONTEXT = context;
+
+        player = new RectPlayer(new Rect(100, 100, 200, 200), Color.rgb(255, 0, 0));
         playerPoint = new Point(Constants.SCREEN_WIDTH/2, 3*Constants.SCREEN_HEIGHT/4);
         player.update();
 
@@ -91,8 +96,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
         thread = new MainThread(getHolder(),this);
 
+        Constants.CURRENT_CONTEXT = context;
 
-        player = new RectPlayer(new Rect(100,100,200,200), Color.rgb(255,0,0));
+        player = new RectPlayer(new Rect(100, 100, 200, 200), Color.rgb(255, 0, 0));
         playerPoint = new Point(Constants.SCREEN_WIDTH/2, 3*Constants.SCREEN_HEIGHT/4);
         player.update();
 
@@ -191,7 +197,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         {
             super.draw(canvas);
 
-            player.draw(canvas);
+            //player.draw(canvas);
 
             obstacleManager.draw(canvas);
         }
@@ -206,6 +212,12 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             drawCenterText(canvas,paint);
         }
     }
+
+    public void drawPlayer(Canvas canvas)
+    {
+        player.draw(canvas);
+    }
+
     private void drawCenterText(Canvas canvas, Paint paint) {
         paint.setTextAlign(Paint.Align.LEFT);
         canvas.getClipBounds(r);
