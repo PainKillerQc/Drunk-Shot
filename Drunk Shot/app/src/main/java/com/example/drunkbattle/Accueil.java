@@ -21,6 +21,7 @@ public class Accueil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent  = new Intent(Accueil.this, MainActivity.class);
+
                 startActivity(intent);
             }
         });

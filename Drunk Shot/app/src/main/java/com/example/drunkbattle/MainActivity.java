@@ -6,12 +6,15 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Surface;
 import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -37,6 +40,11 @@ public class MainActivity extends Activity {
         music.setLooping(true);
         music.start();
 
+        SurfaceView mainSurfaceView = findViewById(R.id.surfaceView);
+
+//        sfvTrack.setZOrderOnTop(true);    // necessary
+//        SurfaceHolder sfhTrackHolder = sfvTrack.getHolder();
+//        sfhTrackHolder.setFormat(PixelFormat.TRANSPARENT);
 
 
         setContentView(R.layout.activity_main);
