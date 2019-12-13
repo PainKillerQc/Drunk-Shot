@@ -36,6 +36,8 @@ public class MainActivity extends Activity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         Constants.SCREEN_WIDTH = dm.widthPixels;
         Constants.SCREEN_HEIGHT = dm.heightPixels;
+
+
         MediaPlayer music = MediaPlayer.create(MainActivity.this,R.raw.car_chase);
         music.setLooping(true);
         music.start();
