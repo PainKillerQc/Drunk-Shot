@@ -1,7 +1,13 @@
 package com.example.drunkbattle;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 
 public class MainThread extends Thread {
     public static final int MAX_FPS = 30;
@@ -11,9 +17,12 @@ public class MainThread extends Thread {
     private boolean running;
     public static Canvas canvas;
 
+
+
     public void setRunning(boolean running)
     {
         this.running = running;
+
     }
 
     public MainThread(SurfaceHolder surfaceHolder, GamePanel gamePanel)
@@ -26,6 +35,7 @@ public class MainThread extends Thread {
     @Override
     public void run()
     {
+
         long startTime;
         long timeMillis = 1000 / MAX_FPS;
         long waitTime;
@@ -33,17 +43,23 @@ public class MainThread extends Thread {
         long totalTime = 0;
         long targetTime = 1000 / MAX_FPS;
 
+
         while(running)
         {
             startTime = System.nanoTime();
             canvas = null;
 
+
             try
             {
                 canvas = this.surfaceHolder.lockCanvas();
+
                 synchronized (surfaceHolder)
                 {
                     this.gamePanel.update();
+                    this.gamePanel.draw(canvas);
+                    // reset the canvas to blank at the start
+                    canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
                     this.gamePanel.draw(canvas);
                 }
 
@@ -57,6 +73,7 @@ public class MainThread extends Thread {
                     try
                     {
                         surfaceHolder.unlockCanvasAndPost(canvas);
+
                     }
                     catch (Exception e)
                     {
@@ -88,6 +105,17 @@ public class MainThread extends Thread {
                     System.out.println(averageFPS);
                 }
             }
+
+        }
+        canvas = this.surfaceHolder.lockCanvas();
+
+        synchronized (surfaceHolder)
+        {
+            this.gamePanel.update();
+            this.gamePanel.draw(canvas);
         }
     }
+
+
+
 }
