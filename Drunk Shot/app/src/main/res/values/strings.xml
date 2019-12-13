@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Drunk Shot</string>
     <string name="todo">TODO</string>
+    <string name="drunk_racing">DRUNK RACING</string>
+    <string name="nom_du_joueur">Nom du joueur :</string>
+    <string name="nom">nom</string>
+    <string name="score">Score :</string>
+    <string name="r_sultat">Résultat</string>
+    <string name="jouer">jouer</string>
+    <string name="save">Save</string>
+    <string name="se_souvenir_de_moi">Se souvenir de moi</string>
+    <string name="dernier_score">Dernier score</string>
+    <string name="ancien_r_sultat">Ancien résultat</string>
+    <string name="_0">0</string>
 </resources>
