@@ -1,6 +1,8 @@
 package com.example.drunkbattle;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
+    public static final String SCORE = "SCORE";
     private MainThread thread;
     private RectPlayer player;
     private Point playerPoint;
@@ -116,6 +119,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
                 if(gameOver && System.currentTimeMillis() - gameOverTime >= 2000)
                 {
 
+                    Intent intent = new Intent(getContext(), Activity_Score.class);
+
+                    intent.putExtra(SCORE, String.valueOf(ObstacleManager.SCORE));
+
+                    getContext().startActivity(intent);
+
+                    ((Activity)getContext()).finish();
                 }
             case MotionEvent.ACTION_MOVE:
                 if(!gameOver && movingPlayer) {

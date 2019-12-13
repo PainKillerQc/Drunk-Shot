@@ -10,6 +10,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class ObstacleManager {
+
+    public static int SCORE;
     private ArrayList<Obstacle> obstacles;
     private int playerGap;
     private int obstacleGap;
@@ -81,6 +83,7 @@ public class ObstacleManager {
             obstacles.remove(obstacles.size()-1);
             score ++;
 
+            SCORE = score;
         }
 
 
@@ -95,9 +98,9 @@ public class ObstacleManager {
             paint.setTextSize(100);
             paint.setColor(Color.MAGENTA);
             canvas.drawText("" + score,50, 50 + paint.descent() - paint.ascent(), paint);
-
-
         }
     }
+
+
 
 }

@@ -15,6 +15,8 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 public class Activity_Score extends AppCompatActivity {
+    Button buttonPlay;
+    TextView resultat;
 
     private EditText nomJoueur;
     private TextView resultat;
