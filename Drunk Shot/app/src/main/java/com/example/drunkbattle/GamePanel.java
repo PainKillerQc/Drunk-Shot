@@ -38,6 +38,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         obstacleManager = new ObstacleManager(200,350,75,Color.BLACK);
 
         setFocusable(true);
+        //setBackgroundResource(R.drawable.backgroundroad);
     }
 
     public void reset()
