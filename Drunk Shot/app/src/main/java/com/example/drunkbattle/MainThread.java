@@ -14,6 +14,7 @@ public class MainThread extends Thread {
     private final SurfaceHolder surfaceHolder;
     private GamePanel gamePanel;
     private boolean running;
+    Canvas canvas;
 
 
 
@@ -45,7 +46,7 @@ public class MainThread extends Thread {
         while(running)
         {
             startTime = System.nanoTime();
-            Canvas canvas = null;
+            canvas = null;
 
 
             try
@@ -105,13 +106,7 @@ public class MainThread extends Thread {
             }
 
         }
-        canvas = this.surfaceHolder.lockCanvas();
 
-        synchronized (surfaceHolder)
-        {
-            this.gamePanel.update();
-            this.gamePanel.draw(canvas);
-        }
     }
 
 
