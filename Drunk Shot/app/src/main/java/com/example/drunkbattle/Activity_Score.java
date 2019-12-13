@@ -3,121 +3,128 @@ package com.example.drunkbattle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
 public class Activity_Score extends AppCompatActivity {
-    Button buttonPlay;
     TextView resultat;
-
+    TextView ancienScore;
+    Button ancienScoreButton;
     private EditText nomJoueur;
-    private TextView resultat;
-    private TextView ancienScore;
-    private Button boutonJouer;
-    private Button save;
-    private CheckBox saveInfo;
 
-    private SharedPreferences mPreferences;
-    private SharedPreferences.Editor mEditor;
-
-    private static final String TAG = "MainActivity";
+    private static final String FILE_NAME = "Score list";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
-        nomJoueur = (EditText) findViewById(R.id.nomJoueur);
-        resultat = (TextView) findViewById(R.id.résultat);
-        boutonJouer = (Button) findViewById(R.id.boutonJouer);
-        save = (Button) findViewById(R.id.boutonSauvegarder);
-        saveInfo = (CheckBox) findViewById(R.id.checkBox);
-        ancienScore = (TextView) findViewById(R.id.ancienResultat);
+        nomJoueur = findViewById(R.id.nomJoueur);
+        resultat = findViewById(R.id.resultValue);
+        Button boutonJouer = findViewById(R.id.boutonJouer);
+        Button save = findViewById(R.id.boutonSauvegarder);
+        ancienScore = findViewById(R.id.ancienScore);
+        ancienScoreButton = findViewById(R.id.loadScore);
 
-        resultat.setText("38");
+        resultat.setText(getIntent().getStringExtra(GamePanel.SCORE));
 
-        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mPreferences = getSharedPreferences("myData", Context.MODE_PRIVATE);
-        mEditor = mPreferences.edit();
 
-        checkSharedPreferences();
+
+        boutonJouer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Activity_Score.this, MainActivity.class);
+
+                startActivity(intent);
+
+                finish();
+            }
+        });
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(saveInfo.isChecked())
-                {
-                    mEditor.putString(getString(R.string.se_souvenir_de_moi), "True");
-                    mEditor.commit();
 
-                    String name  = nomJoueur.getText().toString();
-                    mEditor.putString(getString(R.string.nom_du_joueur), name);
-                    mEditor.commit();
+                String text = resultat.getText().toString();
+                FileOutputStream fos = null;
 
-                    String score  = resultat.getText().toString();
-                    mEditor.putString(getString(R.string.r_sultat), score);
-                    mEditor.commit();
+                try{
+                    fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
+                    fos.write(nomJoueur.getText().toString().getBytes());
+                    fos.write(" ".getBytes());
+                    fos.write(text.getBytes());
 
-                    String ancienResult = resultat.getText().toString();
-                    mEditor.putString(getString(R.string.ancien_r_sultat), ancienResult);
-                    mEditor.commit();
+                    Toast.makeText(Activity_Score.this, "Saved to" + getFilesDir() + "/" + FILE_NAME, Toast.LENGTH_LONG).show();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }finally {
+                    if(fos != null){
+                        try {
+                            fos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
-                else
-                {
-                    mEditor.putString(getString(R.string.se_souvenir_de_moi), "False");
-                    mEditor.commit();
+            }
+        });
 
-                    mEditor.putString(getString(R.string.nom_du_joueur), "");
-                    mEditor.commit();
+        ancienScoreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FileInputStream fis = null;
 
-                    mEditor.putString(getString(R.string.r_sultat), "");
-                    mEditor.commit();
+                try{
+                    fis = openFileInput(FILE_NAME);
+                    InputStreamReader isr = new InputStreamReader(fis);
+                    BufferedReader br = new BufferedReader(isr);
+                    StringBuilder sb = new StringBuilder();
+                    String text;
 
-                    mEditor.putString(getString(R.string.ancien_r_sultat), "");
-                    mEditor.commit();
+                    while ((text = br.readLine()) != null){
+
+                        sb.append(text).append("\n");
+                    }
+
+                    ancienScore.setText(sb.toString());
+                } catch (FileNotFoundException e) {
+                    Toast.makeText(Activity_Score.this, "Aucun score enregistré", Toast.LENGTH_LONG).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }finally {
+                    if(fis != null){
+                        try {
+                            fis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }
         });
 
     }
 
-    private void checkSharedPreferences() {
-        String checkbox = mPreferences.getString(getString(R.string.se_souvenir_de_moi), "False");
-        String name = mPreferences.getString(getString(R.string.nom_du_joueur), "");
-        String score = mPreferences.getString(getString(R.string.r_sultat), "");
-        String ancienResultat = mPreferences.getString(getString(R.string.ancien_r_sultat), "");
-
-        nomJoueur.setText(name);
-        resultat.setText(score);
-
-        if(Integer.valueOf(resultat.getText().toString()) > Integer.valueOf(ancienScore.getText().toString()))
-        {
-            ancienScore.setText(score);
-        }
-        else
-        {
-            ancienScore.setText(ancienResultat);
-        }
-
-        if (checkbox.equals(true)) {
-            saveInfo.setChecked(true);
-        } else
-        {
-            saveInfo.setChecked(false);
-        }
-
-    }
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity__score);
-//    }
 }
