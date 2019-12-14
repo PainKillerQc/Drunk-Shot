@@ -21,10 +21,11 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 public class MainActivity extends Activity {
-    
 
 
-
+    /**
+     *Crée la page dans laquelle sera affichée le jeu en utilisant un layout qui utilise le gamepanel dans lequel on retrouve tous les objets du jeu ainsi que le thread
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,13 +42,6 @@ public class MainActivity extends Activity {
         MediaPlayer music = MediaPlayer.create(MainActivity.this,R.raw.car_chase);
         music.setLooping(true);
         music.start();
-
-        SurfaceView mainSurfaceView = findViewById(R.id.surfaceView);
-
-//        sfvTrack.setZOrderOnTop(true);    // necessary
-//        SurfaceHolder sfhTrackHolder = sfvTrack.getHolder();
-//        sfhTrackHolder.setFormat(PixelFormat.TRANSPARENT);
-
 
         setContentView(R.layout.activity_main);
 

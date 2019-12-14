@@ -18,12 +18,21 @@ public class RectPlayer implements GameObject {
     private Animation walkLeft;
     private AnimationManager animManager;
 
-
+    /**
+     * Permet aux autres classes de travailler sur l'objet joueur
+     * @return l'objet rect représentnant le carré rouge déplacé par l'utilisateur
+     */
     public Rect getRectangle()
     {
         return rectangle;
     }
 
+    /**
+     * Permet de créer le carré rouge représentant le joueur
+     * Définie la couleur et les animations effectuées par le carré lorsqu'il est déplacé
+     * @param rectangle représente le carré du joueur
+     * @param color Représente la couleur donnée au carré
+     */
     public RectPlayer(Rect rectangle, int color)
     {
         this.rectangle = rectangle;
@@ -46,6 +55,10 @@ public class RectPlayer implements GameObject {
 
     }
 
+    /**
+     * Permet d'afficher le carré dans la view
+     * @param canvas Représente la view dans laquelle le carré est affiché
+     */
     @Override
     public void draw(Canvas canvas) {
         Paint paint = new Paint();
@@ -60,6 +73,10 @@ public class RectPlayer implements GameObject {
     public void update() {
     }
 
+    /**
+     * Permet de calculer les bordures du carré afin de créer les animations
+     * @param point Représente les coordonées du centre du carré
+     */
     public void update(Point point)
     {
         float oldLeft = rectangle.left;
