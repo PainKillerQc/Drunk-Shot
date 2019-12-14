@@ -6,6 +6,9 @@ import android.graphics.Paint;
 
 import java.util.ArrayList;
 
+/**
+ * Classe qui crée les lignes d'Obstacles et incrémente le score
+ */
 public class ObstacleManager {
 
     public static int SCORE;
@@ -20,6 +23,11 @@ public class ObstacleManager {
 
     private int score = 0;
 
+    /**
+     * Sert à detecter si le rectangle du joueur et celui de l'obstacle se sont touchés
+     * @param player
+     * @return si le joueur a touché la ligne
+     */
 
     public boolean playerCollide(RectPlayer player)
     {
@@ -35,6 +43,13 @@ public class ObstacleManager {
         return false;
     }
 
+    /**
+     * Constructeur de Obstacle Manager
+     * @param playerGap
+     * @param obstacleGap
+     * @param obstacleHeight
+     * @param color
+     */
     public ObstacleManager(int playerGap, int obstacleGap, int obstacleHeight, int color)
     {
         this.playerGap = playerGap;
@@ -50,6 +65,9 @@ public class ObstacleManager {
 
     }
 
+    /**
+     * Crée la position du trou où le joueur pourra passer, la position où la ligne va se créer et la ligne avec les difféernets obstacles.
+     */
     private void populateObstacle()
     {
         int currY = -5* Constants.SCREEN_HEIGHT/4;
@@ -63,6 +81,11 @@ public class ObstacleManager {
 
     }
 
+    /**
+     * S'occupe d'enlever les obstacles du ArrayList au fur et à mesure .
+     * S'occupe aussi de faire que plus le temps avance plus les lignes apparaissent rapidement.
+     * S'occupe d'incrémenter le score.
+     */
     public  void update()
     {
         int elapsedTime = (int)(System.currentTimeMillis() - startTime);
@@ -86,6 +109,10 @@ public class ObstacleManager {
 
     }
 
+    /**
+     * Fait apparaître les obstacles dans le canvas ainsi que le texte de Game over su
+     * @param canvas
+     */
     public void draw(Canvas canvas)
     {
         for (Obstacle ob: obstacles)

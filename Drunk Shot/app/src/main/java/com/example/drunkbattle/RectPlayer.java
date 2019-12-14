@@ -47,11 +47,11 @@ public class RectPlayer implements GameObject {
 
         canvas.drawRect(rectangle,paint);
 
-
     }
 
     @Override
     public void update() {
+
     }
 
     /**

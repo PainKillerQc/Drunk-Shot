@@ -10,6 +10,7 @@ import android.view.WindowManager;
 
 public class MainActivity extends Activity {
 
+
     /**
      *Crée la page dans laquelle sera affichée le jeu en utilisant un layout qui utilise le gamepanel dans lequel on retrouve tous les objets du jeu ainsi que le thread
      */
@@ -24,6 +25,11 @@ public class MainActivity extends Activity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         Constants.SCREEN_WIDTH = dm.widthPixels;
         Constants.SCREEN_HEIGHT = dm.heightPixels;
+
+
+        MediaPlayer music = MediaPlayer.create(MainActivity.this,R.raw.car_chase);
+        music.setLooping(true);
+        music.start();
 
         setContentView(R.layout.activity_main);
 
