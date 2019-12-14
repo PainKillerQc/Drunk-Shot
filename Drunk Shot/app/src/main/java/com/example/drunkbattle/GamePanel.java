@@ -2,24 +2,17 @@ package com.example.drunkbattle;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
-import android.graphics.PorterDuff;
 import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.ViewGroup;
-
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
@@ -31,8 +24,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private Rect r = new Rect();
     private boolean movingPlayer = false;
     private boolean gameOver = false;
-
-    //private SceneManager manager;
 
     private long gameOverTime;
 
@@ -196,8 +187,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         if(canvas != null)
         {
             super.draw(canvas);
-
-            //player.draw(canvas);
 
             obstacleManager.draw(canvas);
         }
