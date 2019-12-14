@@ -12,8 +12,6 @@ public class MainThread extends Thread {
     private boolean running;
     Canvas canvas;
 
-
-
     public void setRunning(boolean running)
     {
         this.running = running;
@@ -43,7 +41,6 @@ public class MainThread extends Thread {
         {
             startTime = System.nanoTime();
             canvas = null;
-
 
             try
             {
@@ -106,11 +103,6 @@ public class MainThread extends Thread {
                     System.out.println(averageFPS);
                 }
             }
-
         }
-
     }
-
-
-
 }

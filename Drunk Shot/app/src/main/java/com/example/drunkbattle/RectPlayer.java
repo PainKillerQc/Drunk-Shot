@@ -34,21 +34,6 @@ public class RectPlayer implements GameObject {
         this.rectangle = rectangle;
         this.color = color;
 
-        BitmapFactory bf = new BitmapFactory();
-        Bitmap idleImg = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.cybertruckmini);
-        Bitmap walk1 = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.cybertruckmini);
-        Bitmap walk2 = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.cybertruckmini);
-
-        idle = new Animation(new Bitmap[]{idleImg}, 2);
-        walkRight = new Animation(new Bitmap[]{walk1, walk2}, 0.5f);
-
-        Matrix m = new Matrix();
-        m.preScale(-1, 1);
-
-        walkLeft = new Animation(new Bitmap[]{walk1, walk2}, 0.5f);
-
-        animManager = new AnimationManager(new Animation[]{idle, walkRight, walkLeft});
-
     }
 
     /**
