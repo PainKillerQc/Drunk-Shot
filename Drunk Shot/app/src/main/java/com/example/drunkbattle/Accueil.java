@@ -10,6 +10,9 @@ import android.widget.Button;
 
 public class Accueil extends AppCompatActivity {
 
+    /**
+     * Crée la page d'accueil comprenant un bouton permettant de débuter la partie
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
