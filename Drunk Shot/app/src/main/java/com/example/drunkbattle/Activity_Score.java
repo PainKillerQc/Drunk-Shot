@@ -24,6 +24,9 @@ public class Activity_Score extends AppCompatActivity {
 
     private static final String FILE_NAME = "Score list";
 
+    /**
+     * Permet de créer la page de score, créer les click listeners sur les boutons désirés soit le bouton pour jouer, le bouton pour sauvegarder le score et le bouton pour afficher la donnée enregistrée
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +42,8 @@ public class Activity_Score extends AppCompatActivity {
         resultat.setText(getIntent().getStringExtra(GamePanel.SCORE));
 
 
-
         boutonJouer.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Activity_Score.this, MainActivity.class);
