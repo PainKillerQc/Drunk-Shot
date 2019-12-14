@@ -27,10 +27,6 @@ public class MainActivity extends Activity {
         Constants.SCREEN_HEIGHT = dm.heightPixels;
 
 
-        MediaPlayer music = MediaPlayer.create(MainActivity.this,R.raw.car_chase);
-        music.setLooping(true);
-        music.start();
-
         setContentView(R.layout.activity_main);
 
     }

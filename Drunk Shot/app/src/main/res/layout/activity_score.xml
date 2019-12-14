@@ -9,10 +9,10 @@
         android:id="@+id/titre"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="12dp"
         android:layout_weight="1"
         android:accessibilityLiveRegion="none"
         android:fontFamily="@font/bungee_inline"
@@ -22,7 +22,7 @@
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#000000"
-        android:textSize="36sp"
+        android:textSize="30sp"
         android:textStyle="italic" />
 
     <LinearLayout
@@ -41,7 +41,7 @@
             android:fontFamily="@font/bungee_inline"
             android:text="@string/nom_du_joueur"
             android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textSize="10sp" />
 
         <EditText
             android:id="@+id/nomJoueur"
@@ -57,7 +57,7 @@
             android:inputType="textPersonName"
             android:paddingTop="20dp"
             android:textColor="#000000"
-            android:textSize="30sp"
+            android:textSize="24sp"
             android:visibility="visible" />
 
     </LinearLayout>
@@ -94,7 +94,7 @@
                 android:gravity="center"
                 android:text="@string/score"
                 android:textColor="#000000"
-                android:textSize="30sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/resultValue"
@@ -117,7 +117,7 @@
         android:fontFamily="@font/bungee_inline"
         android:text="@string/jouer"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -6,7 +6,7 @@
     <string name="nom">nom</string>
     <string name="score">Score :</string>
     <string name="r_sultat">Résultat</string>
-    <string name="jouer">jouer</string>
+    <string name="jouer">re-jouer</string>
     <string name="save">Save</string>
     <string name="se_souvenir_de_moi">Se souvenir de moi</string>
     <string name="dernier_score">Dernier score</string>
