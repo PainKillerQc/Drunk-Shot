@@ -9,7 +9,9 @@ public class Obstacle implements GameObject {
     private Rect rectangle2;
     private int color;
 
-
+/**
+ *Crée les obstacles
+ */
     public Obstacle (int rectHeight, int color, int startX, int startY, int playerGap)
     {
         this.color = color;
