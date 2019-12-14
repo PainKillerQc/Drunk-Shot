@@ -14,6 +14,9 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+/**
+ * Classe qui est la view principal du jeu
+ */
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     public static final String SCORE = "SCORE";
@@ -27,6 +30,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     private long gameOverTime;
 
+    /**
+     * Constructeur de la view qui reçoit en argument le contexte de l'activité
+     * @param context
+     */
     public GamePanel(Context context) {
         super(context);
 
@@ -51,6 +58,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
+    /**
+     * Constructeur de base la view pour que l'on puisse le mettre dans le layout
+     * @param context
+     */
     public GamePanel(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         // TODO Auto-generated constructor stub
@@ -74,6 +85,11 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         setFocusable(true);
     }
 
+    /**
+     * Constructeur de base la view pour que l'on puisse le mettre dans le layout
+     * @param context
+     * @param attrs
+     */
     public GamePanel(Context context, AttributeSet attrs) {
         super(context, attrs);
         // TODO Auto-generated constructor stub
@@ -98,14 +114,11 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         setFocusable(true);
     }
 
-    public void reset()
-    {
-        playerPoint = new Point(Constants.SCREEN_WIDTH/2, 3*Constants.SCREEN_HEIGHT/4);
-        player.update(playerPoint);
-        obstacleManager = new ObstacleManager(200,350,75,Color.BLACK);
-        movingPlayer = false;
 
-    }
+    /**
+     * Est appellée lorsque la surface est créée et débute le thread
+     * @param holder
+     */
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
@@ -115,6 +128,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         thread.start();
     }
 
+    /**
+     * Est appellée lorsque à chaque fois que les objets dans la view se déplacent
+     * @param holder
+     * @param format
+     * @param width
+     * @param height
+     */
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 
@@ -135,6 +155,11 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             }
     }
 
+    /**
+     * Est appellé lorsque le joueur touche l'écran
+     * @param event
+     * @return
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
@@ -166,6 +191,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         return true;
     }
 
+    /**
+     * Met le joueur au bon endroit et les obstacles
+     */
     public void update()
     {
         if(!gameOver) {
@@ -181,6 +209,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
+    /**
+     * Dessine sur tous les objets sur le canvas sauf lw joueur
+     * @param canvas
+     */
     @Override
     public void draw(Canvas canvas)
     {
@@ -202,11 +234,20 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
+    /**
+     * Dessine le Joueur dans le canvas
+     * @param canvas
+     */
     public void drawPlayer(Canvas canvas)
     {
         player.draw(canvas);
     }
 
+    /**
+     * Fonction qui dessine le texte lorsque Game Over
+     * @param canvas
+     * @param paint
+     */
     private void drawCenterText(Canvas canvas, Paint paint) {
         paint.setTextAlign(Paint.Align.LEFT);
         canvas.getClipBounds(r);
