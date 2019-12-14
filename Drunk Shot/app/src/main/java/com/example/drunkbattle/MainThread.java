@@ -9,6 +9,9 @@ import android.graphics.drawable.Drawable;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+/**
+ * Classe qui s'occupe de faire que les barres glissent vers le bas grâce à la gestion du CPU
+ */
 public class MainThread extends Thread {
     private static final int MAX_FPS = 60;
     private final SurfaceHolder surfaceHolder;
@@ -17,13 +20,21 @@ public class MainThread extends Thread {
     Canvas canvas;
 
 
-
+    /**
+     * Set si l'application doit commencer ou pas
+     * @param running
+     */
     public void setRunning(boolean running)
     {
         this.running = running;
 
     }
 
+    /**
+     * Constructeur du thread
+     * @param surfaceHolder
+     * @param gamePanel
+     */
     MainThread(SurfaceHolder surfaceHolder, GamePanel gamePanel)
     {
         super();
@@ -31,6 +42,9 @@ public class MainThread extends Thread {
         this.gamePanel = gamePanel;
     }
 
+    /**
+     * Est triggered lorsque l'application run
+     */
     @Override
     public void run()
     {
